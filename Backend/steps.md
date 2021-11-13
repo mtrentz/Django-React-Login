@@ -50,3 +50,9 @@ User.objects.all()[0].id
 > Criar o URL pra view
 
 > Testar cadastrar usuarios. Tentar com mesmo email, senhas nao matching e 1 que funciona.
+
+> Criar uma nova view dentro do users mesmo como teste. Colocar GET e só pra quem está authenticated. Registrar no urls
+
+> Tentar fazer um test GET sem passar o JWT. Mostrar que pede permissao. Pegar dai um auth token, passar com param com Bearer e o token
+
+> Fazer o registratin serializer gerar tokens pro user criado. Retornar ele tanto no serializar qnt nos views.
