@@ -55,4 +55,4 @@ User.objects.all()[0].id
 
 > Tentar fazer um test GET sem passar o JWT. Mostrar que pede permissao. Pegar dai um auth token, passar com param com Bearer e o token
 
-> Fazer o registratin serializer gerar tokens pro user criado. Retornar ele tanto no serializar qnt nos views.
+> Fazer o registration serializer gerar tokens pro user criado. Retornar ele tanto no serializar qnt nos views.
