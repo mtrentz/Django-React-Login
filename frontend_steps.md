@@ -16,3 +16,5 @@ npm run start
 
 > Criar o LoginForm e importar ele pra LoginPage
 > Criar o RegisterForm e importar ele pra RegisterPage
+
+> Criar axios config
