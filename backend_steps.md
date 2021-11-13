@@ -56,3 +56,24 @@ User.objects.all()[0].id
 > Tentar fazer um test GET sem passar o JWT. Mostrar que pede permissao. Pegar dai um auth token, passar com param com Bearer e o token
 
 > Fazer o registration serializer gerar tokens pro user criado. Retornar ele tanto no serializar qnt nos views.
+
+> Adicionar o blacklist tokens no installed apps
+
+> Criar view pro logout/blacklist. Adicionar a view no urls
+
+python manage.py migrate
+python manage.py runserver
+
+> Gerar novos tokens (login)
+
+> Fazer um Auth Test com o access pra mostrar que funciona
+
+> Pegar novos access a partir do refresh pra mostrar que funciona
+
+> Fazer o logout com o refresh
+
+> Mostrar que nao funciona mais usar o refresh pra gerar novos access.
+
+> Mostrar que o access antigo AINDA funciona, ou seja, vai precisar ser short-lived.
+
+> Adicionar CORS HEADERS pra poder falar com o frontend.
