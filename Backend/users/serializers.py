@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -35,11 +34,4 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
 
-        # Get JWT tokens
-        refresh = RefreshToken.for_user(user)
-
-        # Return tokens
-        return {
-            'refresh': str(refresh),
-            'access': str(refresh.access_token),
-        }
+        return {"msg": "Registration Successful"}

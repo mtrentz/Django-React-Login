@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 const LoginForm = () => {
+  const { loginUser } = useContext(AuthContext);
   return (
-    <form>
+    <form onSubmit={loginUser}>
       <div className="form-group">
         <label htmlFor="username">Username</label>
         <input
@@ -18,7 +20,7 @@ const LoginForm = () => {
         <input
           type="password"
           className="form-control"
-          id="Password"
+          id="password"
           placeholder="Password"
           aria-describedby="Password"
         />

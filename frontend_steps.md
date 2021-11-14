@@ -1,6 +1,6 @@
 > Cd na Frontend. 
 npx create-react-app app
-npm install react-router-dom
+npm install react-router-dom jwt-decode
 
 > Criar folder de Pages e Components.
 > Criar Home, Login, Register page.
