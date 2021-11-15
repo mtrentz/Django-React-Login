@@ -1,5 +1,6 @@
 import React from "react";
-import axiosInstance from "../AxiosConfig";
+import axios from "axios";
+import { baseURL } from "../utils/useAxios";
 
 const RegisterForm = () => {
   const registerUser = (e) => {
@@ -11,13 +12,14 @@ const RegisterForm = () => {
       password: form.password.value,
       password2: form.password2.value,
     };
-    axiosInstance
-      .post("/user/register/", data)
+    axios
+      .post(`${baseURL}/user/register/`, data)
       .then((response) => {
-        console.log(response);
+        console.log("Registration Successful");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log("Registration Failed");
+        console.log(err);
       });
   };
 

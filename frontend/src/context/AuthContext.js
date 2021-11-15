@@ -1,13 +1,14 @@
 import { createContext, useState } from "react";
-import AxiosInstance from "../AxiosConfig";
 import { useNavigate } from "react-router-dom";
+import { baseURL } from "../utils/useAxios";
+import axios from "axios";
 
 const AuthContext = createContext();
 
 export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
-  let [authTokens, setAuthTokens] = useState(() =>
+  var [authTokens, setAuthTokens] = useState(() =>
     localStorage.getItem("authTokens")
       ? JSON.parse(localStorage.getItem("authTokens"))
       : null
@@ -15,32 +16,44 @@ export const AuthProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
-  let loginUser = async (e) => {
+  const loginUser = async (e) => {
+    console.log(baseURL);
     e.preventDefault();
-    let response = await AxiosInstance.post("/token/", {
-      username: e.target.username.value,
-      password: e.target.password.value,
-    });
-
-    if (response.status === 200) {
-      setAuthTokens(response.data);
-      localStorage.setItem("authTokens", JSON.stringify(response.data));
-      navigate("/");
-    } else {
-      console.log("Login Failed");
-    }
+    axios
+      .post(`${baseURL}/token/`, {
+        username: e.target.username.value,
+        password: e.target.password.value,
+      })
+      .then((response) => {
+        localStorage.setItem("authTokens", JSON.stringify(response.data));
+        console.log("login successful");
+        setAuthTokens(response.data);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("Login failed.");
+        console.log(error);
+      });
   };
 
-  let logoutUser = () => {
-    AxiosInstance.post("/user/logout/", {
-      refresh: authTokens.refresh,
-    });
-    setAuthTokens(null);
-    localStorage.removeItem("authTokens");
-    navigate("/");
+  let logoutUser = (refresh) => {
+    axios
+      .post(`${baseURL}/user/logout/`, {
+        refresh: refresh,
+      })
+      .then((response) => {
+        console.log("Logout successful");
+        localStorage.removeItem("authTokens");
+        setAuthTokens(null);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("Logout failed");
+        console.log(error);
+      });
   };
 
-  let contextData = {
+  const contextData = {
     authTokens: authTokens,
     setAuthTokens: setAuthTokens,
     loginUser: loginUser,
